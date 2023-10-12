@@ -1,6 +1,7 @@
 const express = require('express');
 const puppeteer = require('puppeteer');
 const fs = require('fs');
+const dotenv = require("dotenv")
 const cors = require("cors")
 
 const app = express();
@@ -8,6 +9,7 @@ app.use(cors())
 const router = express.Router()
 const port = 3001;
 
+dotenv.config()
 router.get('/generate-pdf', async (req, res) => {
   const browser = await puppeteer.launch({
     headless: 'new',
@@ -37,8 +39,10 @@ router.get('/generate-pdf', async (req, res) => {
   await browser.close();
 });
 
+console.log(process.env.DOMAIN_LINK)
+
 app.use("/api", router)
 
-app.listen(port, () => {
+app.listen(process.env.DOMAIN_LINK || port, () => {
   console.log(`Server is running on port ${port}`);
 });
