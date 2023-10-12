@@ -8,7 +8,7 @@ dotenv.config()
 const app = express();
 app.use(cors())
 const router = express.Router()
-const port = process.env.DOMAIN_LINK ||  5000;
+const port = 8000;
 
 router.get('/generate-pdf', async (req, res) => {
   const browser = await puppeteer.launch({
