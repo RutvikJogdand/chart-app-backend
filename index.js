@@ -8,7 +8,7 @@ dotenv.config()
 const app = express();
 app.use(cors())
 const router = express.Router()
-const port = 5000;
+const port = process.env.DOMAIN_LINK ||  5000;
 
 router.get('/generate-pdf', async (req, res) => {
   const browser = await puppeteer.launch({
@@ -41,6 +41,6 @@ router.get('/generate-pdf', async (req, res) => {
 
 app.use("/api", router)
 
-app.listen(process.env.DOMAIN_LINK || port, () => {
+app.listen(port , () => {
   console.log(`Server is running on port ${port}`);
 });
