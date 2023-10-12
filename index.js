@@ -4,12 +4,12 @@ const fs = require('fs');
 const dotenv = require("dotenv")
 const cors = require("cors")
 
+dotenv.config()
 const app = express();
 app.use(cors())
 const router = express.Router()
 const port = 3001;
 
-dotenv.config()
 router.get('/generate-pdf', async (req, res) => {
   const browser = await puppeteer.launch({
     headless: 'new',
